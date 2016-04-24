@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <style type="text/css">
+      /* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+    body {
+
+    }
+
+    #slovareg {
+      color: black;
+      font-size: 18pt;
+    }
+
+    #beta {
+      color: black;
+      font-size: 8pt;
+
+      margin-left: 2px;
+      margin-top: 6px;
+      display: inline-block;
+
+      -webkit-transform-origin: bottom left;
+      -webkit-transform: rotate(90deg);
+    }
+
+    .content {
+      padding-left: 235px;
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 65px;
+    }
+
+    .words {
+      /*border: 5px solid green;*/
+      z-index: -100;
+      position: fixed;
+      top: 124px;
+      bottom: 50px;
+      overflow-y: scroll;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 50px;
+      bottom: 0;
+      width: 230px;
+      padding-top: 15px;
+      background-color: #f5f5f5;
+      border-right: 1px solid #eee;
+    }
+
+    .footer {
+      padding: 5px;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+    }
+
+    ul.dict-list li {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      padding-right: 15px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    ul.dict-list li:hover {
+      background-color: #e5e5e5;
+    }
+
+    ul.dict-list li .glyphicon:hover {
+      font-weight: bolder;
+    }
+
+    ul.dict-list li.selected {
+      padding-left: 8px;
+      border-left: 8px solid black;
+      font-weight: bold;
+    }
+
+    ol.word-list {
+      list-style-type: decimal;
+      padding-left: 40px;
+      /*overflow-y: auto;
+      position: absolute;*/
+      top: 130px;
+      bottom: 30px;
+    }
+
+    ol.word-list li {
+      margin-bottom: 0px;
+      padding: 2px;
+    }
+
+    ol.word-list li:hover {
+      background-color: #fffdbb;
+    }
+
+    ol.word-list li input {
+      padding: 0;
+      margin: 0;
+    }
+
+    .word-def {
+      cursor: pointer;
+    }
+
+    .word {
+
+    }
+
+    .transcription {
+    }
+
+    .pos {
+      font-style: italic;
+    }
+
+    .translation {
+
+    }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="content"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
