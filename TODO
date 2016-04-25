@@ -4,7 +4,7 @@
 -- Dictionary Sharing
 -- 'Move To' new dictionary
 -- Fix animation
--- Single update for the word move
+-- Single update when move words
 -- Change sort order
 -- Intermediate checkbox for select all/node
 -- Change dictionary provider
@@ -13,13 +13,10 @@
 -- Personal api keys for different dictionaries
 -- {"code":403,"message":"Limit of daily requests exceeded"}
 -- require('whatwg-fetch');
--- Hightlight added words
 -- Show examples for Yandex API
 -- Indicate no translation
 -- Get Yandex request URL for debug.
 -- Statically saved file for debug.
--- Right border alignment
--- const arrow functions
 -- scroll to the added word
 -- static url to display word list: http://slovareg.com/static/?words=cat,dog,rock
 -- indicate there is no translation.

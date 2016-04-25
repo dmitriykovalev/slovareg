@@ -1,6 +1,5 @@
 import React from 'react';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import {Button, ButtonInput, Input, Modal} from 'react-bootstrap';
+import {Button, FormGroup, FormControl, Input, Modal} from 'react-bootstrap';
 
 const EditDictionaryDialog = React.createClass({
   propTypes: {
@@ -14,8 +13,6 @@ const EditDictionaryDialog = React.createClass({
     name: React.PropTypes.string,
     words: React.PropTypes.string,
   },
-
-  mixins: [LinkedStateMixin],
 
   getDefaultProps() {
     return {
@@ -48,6 +45,14 @@ const EditDictionaryDialog = React.createClass({
     }
   },
 
+  handleNameChange(event) {
+    this.setState({name: event.target.value});
+  },
+
+  handleWordsChange(event) {
+    this.setState({words: event.target.value});
+  },
+
   render() {
     return (
       <Modal
@@ -60,18 +65,23 @@ const EditDictionaryDialog = React.createClass({
             <Modal.Title>{this.props.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Input
-              ref='name'
+
+          <FormGroup controlId='name'>
+            <FormControl
               type='text'
               placeholder='Name'
-              valueLink={this.linkState('name')}
+              value={this.state.name}
+              onChange={this.handleNameChange}
               autoFocus/>
-            <Input
-              ref='words'
-              type='textarea'
-              style={{height: '200px'}}
+          </FormGroup>
+          <FormGroup controlId='words'>
+            <FormControl
+              componentClass='textarea'
               placeholder='Words'
-              valueLink={this.linkState('words')}/>
+              value={this.state.words}
+              onChange={this.handleWordsChange}/>
+          </FormGroup>
+
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.onHide}>Cancel</Button>

@@ -19,13 +19,13 @@ const DeleteDictionaryDialog = React.createClass({
   render() {
     return (
       <Modal
-        bsSize='large'
+        bsSize='small'
         animation={false}
         onHide={this.props.onHide}
         show={this.props.show}>
         <form>
           <Modal.Header closeButton>
-            <Modal.Title>Delete dictionary '{this.props.name}'</Modal.Title>
+            <Modal.Title>Delete dictionary &lsquo;{this.props.name}&rsquo;?</Modal.Title>
           </Modal.Header>
           <Modal.Footer>
             <Button onClick={this.props.onHide}>Cancel</Button>

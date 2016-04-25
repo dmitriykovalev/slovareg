@@ -1,5 +1,12 @@
 import React from 'react';
-import {Glyphicon, Button, ButtonGroup, ButtonToolbar, DropdownButton, Input, MenuItem} from 'react-bootstrap';
+import {Glyphicon,
+        Button,
+        InputGroup,
+        FormControl,
+        ButtonGroup,
+        ButtonToolbar,
+        DropdownButton,
+        MenuItem} from 'react-bootstrap';
 
 const Toolbar = React.createClass({
   propTypes: {
@@ -11,13 +18,21 @@ const Toolbar = React.createClass({
     onMoveWords: React.PropTypes.func.isRequired,    /* f(dictId) */
   },
 
-  handleSelect(event, eventKey) {
+  getInitialState() {
+    return {wordsStr: ''};
+  },
+
+  handleWordsStrChange(event) {
+    this.setState({wordsStr: event.target.value});
+  },
+
+  handleSelect(eventKey) {
     this.props.onSelect(eventKey);
   },
 
   handleAddWords(event) {
-    const wordsStr = this.refs.addWords.getValue();
-    this.refs.addWords.getInputDOMNode().value = '';
+    const wordsStr = this.state.wordsStr;
+    this.setState({wordsStr: ''});
     this.props.onAddWords(wordsStr);
   },
 
@@ -31,7 +46,7 @@ const Toolbar = React.createClass({
     this.props.onDeleteWords();
   },
 
-  handleMoveWords(event, eventKey) {
+  handleMoveWords(eventKey) {
     this.props.onMoveWords(eventKey);
   },
 
@@ -45,13 +60,16 @@ const Toolbar = React.createClass({
           <MenuItem eventKey='none'>None</MenuItem>
         </DropdownButton>
 
-        <ButtonGroup style={{width: '200px'}}>
-          <Input
-            ref='addWords'
+        <InputGroup style={{width: '200px'}}>
+          <FormControl
             type='text'
-            onKeyUp={this.handleAddWordsOnEnter}
-            buttonAfter={<Button onClick={this.handleAddWords}>Add</Button>} />
-        </ButtonGroup>
+            value={this.state.wordsStr}
+            onChange={this.handleWordsStrChange}
+            onKeyUp={this.handleAddWordsOnEnter}/>
+          <InputGroup.Button>
+            <Button onClick={this.handleAddWords}>Add</Button>
+          </InputGroup.Button>
+        </InputGroup>
 
         <ButtonGroup>
           <Button

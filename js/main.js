@@ -15,9 +15,13 @@ const handleLogin = (login, password) =>
     }, resolve);
   });
 
+const handleLogout = () => {
+  ref.unauth();
+};
+
 ref.onAuth(authData => {
   ReactDOM.render(<SlovaregPage fb={fb}
                                 onLogin={handleLogin}
-                                onLogout={() => ref.unauth()}/>,
+                                onLogout={handleLogout}/>,
                   document.getElementById('content'));
 });

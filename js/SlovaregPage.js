@@ -18,11 +18,10 @@ const Header = ({title, onSelect}) =>
     </Navbar.Header>
 
     <Navbar.Collapse>
-      <Nav pullRight>
+      <Nav onSelect={onSelect} pullRight>
         <NavDropdown
           id='navigation'
-          title={title}
-          onSelect={onSelect}>
+          title={title}>
           <MenuItem eventKey='profile'>Profile</MenuItem>
           <MenuItem divider />
           <MenuItem eventKey='logout'>Log Out</MenuItem>
@@ -51,7 +50,7 @@ const SlovaregPage = React.createClass({
     }
   },
 
-  handleSelect(event, eventKey) {
+  handleSelect(eventKey) {
     if (eventKey === 'logout') {
       this.props.onLogout();
     } else if (eventKey === 'profile') {

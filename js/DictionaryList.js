@@ -2,13 +2,13 @@ require('whatwg-fetch');
 
 import React from 'react';
 import {Button, Input} from 'react-bootstrap';
-import { hashHistory, browserHistory, IndexRoute, Redirect, Router, Route, Link, routerShape } from 'react-router';
+import {hashHistory, routerShape, IndexRoute, Router, Route} from 'react-router';
 
 import getYandexLookup from './YandexDictionaryLookup';
 import EditDictionaryDialog from './EditDictionaryDialog';
+import Dictionary from './Dictionary.js';
 import DeleteDictionaryDialog from './DeleteDictionaryDialog';
 import NameList from './NameList';
-import Dictionary from './Dictionary.js';
 import {getUrlParam} from './Util';
 
 const normalizeSnapshot = (dicts) => {
@@ -37,7 +37,7 @@ const parseWordsString = (wordsStr) => {
     return wordsStr
       .split(',')
       .map(word => word.trim().toLowerCase())
-      .filter((item, pos, array) => array.indexOf(item) == pos); // remove duplicates
+      .filter((item, pos, array) => array.indexOf(item) === pos); // remove duplicates
   } else {
     return [];
   }
@@ -111,34 +111,26 @@ const DictionaryList = React.createClass({
 
   // Words
   handleAddWords(wordsStr) {
+    const wordsToAdd = parseWordsString(wordsStr);
     this.getFirebase().updateDict(this.getSelectedId(),
                                   this.getSelectedDict(),
-                                  null,
-                                  [],
-                                  parseWordsString(wordsStr));
+                                  null, [], wordsToAdd);
   },
 
   handleDeleteWords(selection) {
     this.getFirebase().updateDict(this.getSelectedId(),
                                   this.getSelectedDict(),
-                                  null,
-                                  selection,
-                                  []);
+                                  null, selection, []);
   },
 
   handleMoveWords(dictId, selection) {
     const wordsToAdd = getDictWordList(this.getSelectedDict(), selection);
-
     this.getFirebase().updateDict(dictId,
                                   this.state.dicts[dictId],
-                                  null,
-                                  [],
-                                  wordsToAdd);
+                                  null, [], wordsToAdd);
     this.getFirebase().updateDict(this.getSelectedId(),
                                   this.getSelectedDict(),
-                                  null,
-                                  selection,
-                                  []);
+                                  null, selection, []);
   },
 
   setDicts(dicts) {

@@ -1,13 +1,10 @@
 import React from 'react';
-import {Button, ButtonInput, Input, Modal} from 'react-bootstrap';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import {Button, FormGroup, FormControl, Modal} from 'react-bootstrap';
 
 const LoginForm = React.createClass({
   propTypes: {
     onSubmit: React.PropTypes.func  // f(login, password)
   },
-
-  mixins: [LinkedStateMixin],
 
   getInitialState() {
     return {
@@ -20,13 +17,21 @@ const LoginForm = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
 
-    this.props.onSubmit(this.state.login,
-                        this.state.password).then(error => {
+    const {login, password} = this.state;
+    this.props.onSubmit(login, password).then(error => {
       this.setState({
-        password: (error ? '' : self.state.password),
-        error:    (error ? error.message : null)
+        password: (error ? '' : password),
+        error: (error ? error.message : null)
       });
     });
+  },
+
+  handleLoginChange(event) {
+    this.setState({login: event.target.value});
+  },
+
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value});
   },
 
   render() {
@@ -40,26 +45,29 @@ const LoginForm = React.createClass({
             <Modal.Title>Slovareg</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Input
-              ref='login'
-              type='text'
-              placeholder='Login'
-              valueLink={this.linkState('login')}
-              autoFocus />
-            <Input
-              ref='password'
-              type='password'
-              placeholder='Password'
-              valueLink={this.linkState('password')} />
+            <FormGroup controlId='login'>
+              <FormControl
+                type='text'
+                placeholder='Login'
+                value={this.state.login}
+                onChange={this.handleLoginChange}
+                autoFocus/>
+            </FormGroup>
+            <FormGroup controlId='password'>
+              <FormControl
+                type='password'
+                placeholder='Password'
+                value={this.state.password}
+                onChange={this.handlePasswordChange}/>
+            </FormGroup>
             <p className='text-warning'><small>{this.state.error}</small></p>
           </Modal.Body>
           <Modal.Footer>
-            <ButtonInput
+            <Button
               type='submit'
-              value='Login'
               bsStyle='primary'
               disabled={!this.state.login || !this.state.password}
-              onClick={this.handleSubmit} />
+              onClick={this.handleSubmit}>Login</Button>
           </Modal.Footer>
         </form>
       </Modal>

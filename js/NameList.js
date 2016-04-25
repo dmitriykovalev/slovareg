@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Glyphicon, Badge} from 'react-bootstrap';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {mapToArray} from './Util';
 
@@ -42,19 +43,24 @@ const NameList = React.createClass({
 
     return (
       <ul className='dict-list'>
-        {dicts.map(dict =>
-          <li
-            onMouseEnter={() => this.setState({selectedId: dict.id})}
-            onMouseLeave={() => this.setState({selectedId: null})}
-            key={dict.id}
-            className={dict.id === this.props.selectedId ? 'selected' : ''}
-            onClick={() => this.props.onSelectionChange(dict.id)}>
+        <ReactCSSTransitionGroup
+          transitionName='dict'
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {dicts.map(dict =>
+            <li
+              onMouseEnter={() => this.setState({selectedId: dict.id})}
+              onMouseLeave={() => this.setState({selectedId: null})}
+              key={dict.id}
+              className={dict.id === this.props.selectedId ? 'selected' : ''}
+              onClick={() => this.props.onSelectionChange(dict.id)}>
 
-            {this.state.selectedId === dict.id ? this.renderActions(dict.id)
-                                               : <WordCount words={dict.words}/>}
-            {dict.name}
-          </li>
-        )}
+              {this.state.selectedId === dict.id ? this.renderActions(dict.id)
+                                                 : <WordCount words={dict.words}/>}
+              {dict.name}
+            </li>
+          )}
+        </ReactCSSTransitionGroup>
       </ul>
     );
   }
