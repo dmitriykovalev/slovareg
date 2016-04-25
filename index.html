@@ -94,6 +94,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
       position: absolute;*/
       top: 130px;
       bottom: 30px;
+      width: 100%;
     }
 
     ol.word-list li {
@@ -127,6 +128,44 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
     .translation {
 
+    }
+
+    /* Dictionary add/remove animation */
+    .dict-enter {
+      opacity: 0.01;
+    }
+
+    .dict-enter.dict-enter-active {
+      opacity: 1;
+      transition: opacity 500ms ease-in;
+    }
+
+    .dict-leave {
+      opacity: 1;
+    }
+
+    .dict-leave.dict-leave-active {
+      opacity: 0.01;
+      transition: opacity 300ms ease-in;
+    }
+
+    /* Word add/remove animation */
+    .word-enter {
+      opacity: 0.01;
+    }
+
+    .word-enter.word-enter-active {
+      opacity: 1;
+      transition: opacity 500ms ease-in;
+    }
+
+    .word-leave {
+      opacity: 1;
+    }
+
+    .word-leave.word-leave-active {
+      opacity: 0.01;
+      transition: opacity 300ms ease-in;
     }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
